@@ -51,12 +51,10 @@ void invoerhandel(int plaatsindex)
     // zorg dat de plaatsindex binnen het domein [1, 9] blijft
     if (plaatsindex < 1 || plaatsindex > 9)
     {
-        cout << plaatsindex << " is geen geldige invoer. vul een nieuwe plek in tussen 1 en 9" << endl;
+        cout << plaatsindex << " is geen geldige invoer. Voer een andere plek in tussen 1 en 9" << endl;
         int invoer = 1;
-        cout << "invoer: " << invoer << endl;
         cin >> invoer;
         cin.get();
-        cout << "invoer: " << invoer << endl;
         invoerhandel(invoer);
 
         return;
@@ -65,7 +63,7 @@ void invoerhandel(int plaatsindex)
     // zorg dat je niet op een plek kan plaatsen waar al iets staat
     if (bord[plaatsindex - 1] != ' ')
     {
-        cout << "Deze plek is al bezet door " << bord[plaatsindex - 1] << ". Voer een nieuwe plek in:" << endl;
+        cout << "Deze plek is al bezet door " << bord[plaatsindex - 1] << ". Voer een andere plek in tussen 1 en 9:" << endl;
 
         int invoer = 1;
         cin >> invoer;
@@ -156,40 +154,22 @@ uitkomst checkField()
         }
     }
 
-    // check dioganaal (linksboven naar rechtsonder)
-    if (bord[0] == 'O' && bord[4] == 'O' && bord[8] == 'O')
+    // check diagonaal (linksboven naar rechtsonder)
+    if (bord[0] == bord[4] && bord[0] == bord[8] && (bord[0] != ' ' && bord[4] != ' ' && bord[8] != ' '))
     {
         winnaar = true;
-        speler = 'O';
-        return uitkomst{
-            winnaar,
-            speler,
-        };
-    }
-    else if (bord[0] == 'X' && bord[4] == 'X' && bord[8] == 'X')
-    {
-        winnaar = true;
-        speler = 'X';
+        speler = bord[0];
         return uitkomst{
             winnaar,
             speler,
         };
     }
 
-    // check dioganaal (rechtsboven naar linksonder)
-    if (bord[2] == 'O' && bord[4] == 'O' && bord[6] == 'O')
+    // check diagonaal (rechtsboven naar linksonder)
+    if (bord[2] == bord[4] && bord[2] == bord[6] && (bord[2] != ' ' && bord[4] != ' ' && bord[6] != ' '))
     {
         winnaar = true;
-        speler = 'O';
-        return uitkomst{
-            winnaar,
-            speler,
-        };
-    }
-    else if (bord[2] == 'X' && bord[4] == 'X' && bord[6] == 'X')
-    {
-        winnaar = true;
-        speler = 'X';
+        speler = bord[2];
         return uitkomst{
             winnaar,
             speler,
