@@ -176,16 +176,11 @@ uitkomst checkField()
         };
     }
 
-    // check of het bord vol is
-    bool boolArr[9];
-    for (int i = 0; i < 9; i++)
-    {
-        boolArr[i] = (bool)((int)bord[i] != 32);
-    }
+    // check op welke index er een lege plek zit
     int i = 0;
     while (i < 9)
     {
-        if (boolArr[i] == false)
+        if (bord[i] == ' ')
             break;
         i++;
     }
