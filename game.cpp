@@ -40,21 +40,26 @@ void beurtStart()
     cout << "Speler " << pieces[beurt % 2] << " is nu aan de beurt" << endl;
     cout << "Op welke plek wil je een \"" << pieces[beurt % 2] << "\" plaatsen? (Voer een getal van 1 - 9 in.)" << endl;
 
-    int invoer = 0;
-    cin >> invoer;
-    cin.get();
+    char invoer = '0';
+    invoer = cin.get();
     invoerhandel(invoer);
 }
 
 void invoerhandel(int plaatsindex)
 {
+    // leeg de invoerbuffer
+    while (cin.get() != '\n')
+        ;
+
+    // houdt rekening met de offset
+    plaatsindex = plaatsindex - 48;
+
     // zorg dat de plaatsindex binnen het domein [1, 9] blijft
     if (plaatsindex < 1 || plaatsindex > 9)
     {
         cout << plaatsindex << " is geen geldige invoer. Voer een andere plek in tussen 1 en 9" << endl;
-        int invoer = 1;
-        cin >> invoer;
-        cin.get();
+        char invoer = '0';
+        invoer = cin.get();
         invoerhandel(invoer);
 
         return;
@@ -65,9 +70,8 @@ void invoerhandel(int plaatsindex)
     {
         cout << "Deze plek is al bezet door " << bord[plaatsindex - 1] << ". Voer een andere plek in tussen 1 en 9:" << endl;
 
-        int invoer = 1;
-        cin >> invoer;
-        cin.get();
+        char invoer = '0';
+        invoer = cin.get();
         invoerhandel(invoer);
 
         return;
